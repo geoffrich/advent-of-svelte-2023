@@ -88,7 +88,9 @@
 	</svelte:element>
 </nav>
 
-<slot />
+<div class="content">
+	<slot />
+</div>
 <h2>
 	<a
 		href="https://github.com/geoffrich/advent-of-svelte-2023/tree/main/src/routes/day/{day}/%2Bpage.svelte"
@@ -165,5 +167,9 @@
 	/* enforce a11y via CSS! */
 	.item[aria-hidden] {
 		filter: grayscale();
+	}
+
+	.content {
+		align-self: start;
 	}
 </style>
