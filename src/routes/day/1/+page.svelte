@@ -76,6 +76,63 @@
 	}
 </script>
 
+<form
+	onchange={handleStatusChange}
+	data-sveltekit-keepfocus
+	data-sveltekit-replacestate
+	class="status-form"
+>
+	<fieldset>
+		<legend>Status</legend>
+		{#each statuses as status}
+			<label class="radio">
+				<input type="radio" name="status" value={status} checked={status === selectedStatus} />
+				{status}
+			</label>
+		{/each}
+	</fieldset>
+</form>
+
+<h2>Add Child</h2>
+<form onsubmit={addChild} class="add-form">
+	<div><label>Name <input type="text" bind:value={name} required /></label></div>
+	<div>
+		<label>Tally <input type="number" bind:value={tally} required /></label>
+		<button>Add</button>
+	</div>
+</form>
+
+<form data-sveltekit-keepfocus data-sveltekit-replacestate>
+	<input type="hidden" name="status" value={selectedStatus} />
+	<table>
+		<thead>
+			<tr>
+				<th
+					>Name <button class="sort" name="sortName" value={nextSort(sortName)}
+						>{@render sortIcon(sortName)}</button
+					></th
+				>
+				<th
+					>Tally <button class="sort" name="sortTally" value={nextSort(sortTally)}
+						>{@render sortIcon(sortTally)}</button
+					></th
+				>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each sortedTallies as { name, tally, id } (id)}
+				{@const status = getStatus(tally)}
+				<tr>
+					<td>{name}</td>
+					<td>{tally}</td>
+					<td data-status={status}>{status}</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+</form>
+
 {#snippet sortIcon(direction: SortDirection)}
 	<span class="visually-hidden">Sort {direction}</span>
 	{#if direction === 'asc'}
@@ -110,61 +167,6 @@
 		<span>&mdash;</span>
 	{/if}
 {/snippet}
-
-<form
-	onchange={handleStatusChange}
-	data-sveltekit-keepfocus
-	data-sveltekit-replacestate
-	class="status-form"
->
-	<fieldset>
-		<legend>Status</legend>
-		{#each statuses as status}
-			<label class="radio">
-				<input type="radio" name="status" value={status} checked={status === selectedStatus} />
-				{status}
-			</label>
-		{/each}
-	</fieldset>
-</form>
-
-<h2>Add Child</h2>
-<form onsubmit={addChild}>
-	<label>Name <input type="text" bind:value={name} required /></label>
-	<label>Tally <input type="number" bind:value={tally} required /></label>
-	<button>Add</button>
-</form>
-
-<form data-sveltekit-keepfocus data-sveltekit-replacestate>
-	<input type="hidden" name="status" value={selectedStatus} />
-	<table>
-		<thead>
-			<tr>
-				<th
-					>Name <button class="sort" name="sortName" value={nextSort(sortName)}
-						>{@render sortIcon(sortName)}</button
-					></th
-				>
-				<th
-					>Tally <button class="sort" name="sortTally" value={nextSort(sortTally)}
-						>{@render sortIcon(sortTally)}</button
-					></th
-				>
-				<th>Status</th>
-			</tr>
-		</thead>
-		<tbody>
-			{#each sortedTallies as { name, tally, id } (id)}
-				{@const status = getStatus(tally)}
-				<tr>
-					<td>{name}</td>
-					<td>{tally}</td>
-					<td data-status={status}>{status}</td>
-				</tr>
-			{/each}
-		</tbody>
-	</table>
-</form>
 
 <style>
 	.status-form {
@@ -212,5 +214,9 @@
 		flex-shrink: 0;
 		width: 1rem;
 		height: 1rem;
+	}
+
+	.add-form div {
+		margin-top: 1rem;
 	}
 </style>
