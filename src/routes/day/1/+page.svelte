@@ -90,6 +90,7 @@
 				{status}
 			</label>
 		{/each}
+		<button>Filter</button>
 	</fieldset>
 </form>
 
