@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reducedMotion } from '$lib/reducedMotion';
 	import { fly } from 'svelte/transition';
 
 	let count = $state(0);
@@ -54,12 +55,12 @@
 <div class="buttons">
 	<button onclick={() => count++} disabled={!canAdd}>More</button>
 	<button onclick={() => count--} disabled={!canRemove}>Less</button>
-	<button onclick={() => (count = 18)}>Reset</button>
+	<button onclick={() => (count = 0)}>Reset</button>
 </div>
 <h2>Santa status: {status}</h2>
 <div class="cookies">
 	{#each { length: count } as _, idx (idx)}
-		<span class="cookie" out:fly={{ y: 30, duration: 100 }}>🍪</span>
+		<span class="cookie" out:fly={{ y: $reducedMotion ? 0 : 30, duration: 100 }}>🍪</span>
 	{/each}
 </div>
 
