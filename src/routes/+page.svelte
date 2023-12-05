@@ -7,9 +7,9 @@
 	Code for my solutions is available on
 	<a href="https://github.com/geoffrich/advent-of-svelte-2023">GitHub</a>.
 </p>
-<p>
+<!-- <p>
 	Many of the solutions work without JavaScript through the magic of ✨ progressive enhancement ✨
-</p>
+</p> -->
 <ol>
 	{#each days as day}
 		<li>

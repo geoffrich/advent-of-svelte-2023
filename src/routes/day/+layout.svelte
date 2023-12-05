@@ -170,6 +170,6 @@
 	}
 
 	.content {
-		align-self: start;
+		align-self: stretch;
 	}
 </style>
