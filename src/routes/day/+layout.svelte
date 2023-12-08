@@ -17,8 +17,8 @@
 	function getPageRange(current: number) {
 		const items = days.map((d) => d.num);
 		const offset = 2;
-		const leftBoundary = Math.max(current - offset, 0);
-		const rightBoundary = current + offset + 1;
+		const leftBoundary = Math.max(current - offset - 1, 0);
+		const rightBoundary = current + offset;
 		const left = items.slice(leftBoundary, current);
 		const right = items.slice(current, rightBoundary);
 		const diff = left.length - (right.length - 1);

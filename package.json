@@ -14,7 +14,9 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.27.4",
+		"@types/d3-interpolate": "^3.0.4",
 		"@types/prismjs": "^1.26.3",
+		"d3-interpolate": "^3.0.1",
 		"open-props": "^1.6.13",
 		"prettier": "^3.0.0",
 		"prettier-plugin-svelte": "^3.0.0",
