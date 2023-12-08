@@ -2,7 +2,7 @@
 	import { tweened } from 'svelte/motion';
 	import { interpolateHsl } from 'd3-interpolate';
 
-	const MAX_VALUE = 50;
+	const MAX_VALUE = 20;
 
 	const { data } = $props();
 	const weights = $state(
